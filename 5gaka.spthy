@@ -2,16 +2,22 @@ theory 5gaka
 begin
 
 rule create_ue:
+	[Fr(~suci),Fr(~K)]-->[!Identity($ue, ~suci, $hn), LongTermKey(~K), Out(~suci, $hn)]
 
 rule create_seaf:
+	[]-->[!Identity($seaf)]
 
 rule create_ausf:
+	[]-->[!Identity($ausf)]
 
 rule create_udm:
+	[]-->[!Identity($udm)]
 
-rule generate_av:
+rule make_info_request:
 
-rule nudm_authentication:
+rule auth_info_request:
+
+rule auth_info_response:
 
 rule store_xres:
 
@@ -19,11 +25,11 @@ rule hxres:
 
 rule nausf_response:
 
-rule authentication_request:
+rule auth_request:
 
-rule authentication:
+rule auth:
 
-rule authentication_response:
+rule auth_response:
 
 rule compare_hres_hxres:
 
