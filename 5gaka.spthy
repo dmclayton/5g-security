@@ -1,0 +1,36 @@
+theory 5gaka
+begin
+
+rule create_ue:
+
+rule create_seaf:
+
+rule create_ausf:
+
+rule create_udm:
+
+rule generate_av:
+
+rule nudm_authentication:
+
+rule store_xres:
+
+rule hxres:
+
+rule nausf_response:
+
+rule authentication_request:
+
+rule authentication:
+
+rule authentication_response:
+
+rule compare_hres_hxres:
+
+rule nausf_request:
+
+rule res_verification:
+
+rule nausf_final_response:
+
+end
