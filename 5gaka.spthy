@@ -1,8 +1,10 @@
 theory 5gaka
 begin
 
+builtins: hashing
+
 rule create_ue:
-	[Fr(~suci),Fr(~K)]-->[!Identity($ue, ~suci, $hn), LongTermKey(~K), Out(~suci, $hn)]
+	[Fr(~suci),Fr(~K)]-->[!Identity($ue, ~suci, $hn), LongTermKey(~K), Out(~suci), Out($hn)]
 
 rule create_seaf:
 	[]-->[!Identity($seaf)]
@@ -13,9 +15,11 @@ rule create_ausf:
 rule create_udm:
 	[]-->[!Identity($udm)]
 
-rule make_info_request:
+rule send_auth_request:
+        [!Identity($ue, ~suci, $hn), !Identity($seaf)]-->[Out(<'request_auth', $ue, $seaf, ~suci, $hn>)]
 
-rule auth_info_request:
+rule receive_auth_request:
+        [!Identity($seaf)] -->[Out(<'5G_AIR', $seaf, $ausf, ~suci, $hn>)]
 
 rule auth_info_response:
 
