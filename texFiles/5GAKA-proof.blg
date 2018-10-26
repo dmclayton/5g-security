@@ -3,44 +3,44 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: 5GAKA-proof.aux
 The style file: plain.bst
 Database file #1: References.bib
-You've used 4 entries,
+You've used 5 entries,
             2118 wiz_defined-function locations,
-            520 strings with 4863 characters,
-and the built_in function-call counts, 1882 in all, are:
-= -- 189
-> -- 97
+            524 strings with 5015 characters,
+and the built_in function-call counts, 2122 in all, are:
+= -- 212
+> -- 110
 < -- 2
-+ -- 40
-- -- 34
-* -- 130
-:= -- 292
-add.period$ -- 14
-call.type$ -- 4
-change.case$ -- 29
++ -- 45
+- -- 38
+* -- 142
+:= -- 337
+add.period$ -- 17
+call.type$ -- 5
+change.case$ -- 34
 chr.to.int$ -- 0
-cite$ -- 4
-duplicate$ -- 68
-empty$ -- 138
-format.name$ -- 34
-if$ -- 408
+cite$ -- 5
+duplicate$ -- 78
+empty$ -- 155
+format.name$ -- 38
+if$ -- 456
 int.to.chr$ -- 0
-int.to.str$ -- 4
-missing$ -- 3
-newline$ -- 23
-num.names$ -- 8
-pop$ -- 37
+int.to.str$ -- 5
+missing$ -- 4
+newline$ -- 28
+num.names$ -- 10
+pop$ -- 42
 preamble$ -- 1
-purify$ -- 25
+purify$ -- 29
 quote$ -- 0
-skip$ -- 58
+skip$ -- 66
 stack$ -- 0
-substring$ -- 127
-swap$ -- 28
+substring$ -- 132
+swap$ -- 29
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 16
+type$ -- 20
 warning$ -- 0
-while$ -- 16
-width$ -- 5
-write$ -- 46
+while$ -- 18
+width$ -- 6
+write$ -- 56

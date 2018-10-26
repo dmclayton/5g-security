@@ -17,7 +17,12 @@ Cas Cremers, Marko Horvat, Jonathan Hoyland, Sam Scott, and Thyla van~der
 \bibitem{key}
 Martin Dehnel-Wild and Cas Cremers.
 \newblock Security vulnerability in 5g-aka draft (3gpp ts 33.501 draft v0.7.0).
-\newblock Available at\url{https://www.cs.ox.ac.uk/5G-analysis/}(2018/02/08).
+\newblock Available at {https://www.cs.ox.ac.uk/5G-analysis/}(2018/02/08).
+
+\bibitem{jover2018security}
+Roger~Piqueras Jover and Vuk Marojevic.
+\newblock Security and protocol exploit analysis of the 5g specifications.
+\newblock {\em arXiv preprint arXiv:1809.06925}, 2018.
 
 \bibitem{prasad20183gpp}
 Anand~R Prasad, Sivabalan Arumugam, B~Sheeba, and Alf Zugenmaier.

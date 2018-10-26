@@ -19,9 +19,13 @@ rule send_auth_request:
         [!Identity($ue, ~suci, $hn), !Identity($seaf)]-->[Out(<'request_auth', $ue, $seaf, ~suci, $hn>)]
 
 rule receive_auth_request:
-        [!Identity($seaf)] -->[Out(<'5G_AIR', $seaf, $ausf, ~suci, $hn>)]
+        [!Identity($seaf), In(<'request_auth', ue, seaf, ~suci, $hn>)] -->[Out(<'5G_AIR', $seaf, $ausf, ~suci, $hn>)]
 
-rule auth_info_response:
+rule auth_info_request:
+        [!Identity($ausf), !Identity($arpf)] --> [Out(<'auth_info_request', $ausf, $arpf, ~suci>)]
+
+rule receive_auth_info_request:
+        [!Identity($arpf), In(<'auth_info_request', $ausf, $arpf, ~suci>)] --> []
 
 rule store_xres:
 
