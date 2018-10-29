@@ -4,48 +4,66 @@ begin
 builtins: hashing
 
 rule create_ue:
-	[Fr(~suci),Fr(~K)]-->[!Identity($ue, ~suci, $hn), LongTermKey(~K), Out(~suci), Out($hn)]
+		[Fr(~suci),Fr(~K)]
+	-->
+		[!Identity($ue, ~suci, $supi, $hn), !LongTermKey(~K), Out(~suci), Out($hn)]
 
 rule create_seaf:
-	[Fr(~$snid)]-->[!Identity($seaf, $snid)]
+		[Fr(~snid)]
+	-->
+		[!Identity($seaf, ~snid)]
 
 rule create_ausf:
-	[]-->[!Identity($ausf)]
+		[]
+	-->
+		[!Identity($ausf)]
 
-rule create_udm:
-	[]-->[!Identity($udm)]
+rule create_arpf:
+		[]
+	-->
+		[!Identity($arpf)]
 
 rule N1_message:
-        [!Identity($ue, ~suci, $hn), !Identity($seaf, $snid)]-->[Out(<'N1_message', $ue, $seaf, ~suci, $hn>)]
+        [!Identity($ue, ~suci, $supi, $hn), !Identity($seaf, ~snid)]
+    --[SendN1($ue, $seaf, ~snid)]->
+    	[Out(<'N1_message', $ue, $seaf, ~suci, $hn>)]
 
 rule receive_N1_message:
-        [!Identity($seaf, $snid), In(<'N1_message', ue, seaf, ~suci, $hn>)] -->[Out(<'Nausf_UEAuthentication_Authenticate_Request', $seaf, $ausf, ~suci, $hn, $snid>)]
+        [!Identity($seaf, ~snid), !Identity($ausf), In(<'N1_message', $ue, $seaf, ~suci, $hn>)]
+    -->
+       	[Out(<'Nausf_UEAuthentication_Authenticate_Request', $seaf, $ausf, ~suci, $hn, ~snid>)]
 
 rule receive_Nausf_UEAuthentication_Authenticate:
-        [!Identity($ausf), In('Nausf_UEAuthentication_Authenticate_Request', $seaf, $ausf, ~suci, $hn, $snid>)] --> [Out(<'Ndm_UEAuthentication_GET_Request', $ausf, $arpf, ~suci, $snid>)]
+        [!Identity($seaf, ~snid), !Identity($ausf), In('Nausf_UEAuthentication_Authenticate_Request', $seaf, $ausf, ~suci, $hn, ~snid>)]
+    -->
+    	[Out(<'Ndm_UEAuthentication_GET_Request', $ausf, $arpf, ~suci, ~snid>)]
 
 rule receive_Ndm_UEAuthentication_GET_Request:
-        [Fr(~rand), Fr(xres), Fr(supi), Identity($arpf), In(<'Ndm_UEAuthentication_GET_Request', $ausf, $arpf, ~suci, $snid>)] 
-           --> [Out('Ndm_UEAuthentication_GET_Response', $arpf, $ausf, ~rand, xres, supi)]
-
-rule store_xres:
-        [Identity($ausf), In('Ndm_UEAuthentication_GET_Response', $arpf, $ausf, ~rand, xres, supi)]  --> [Identity($ausf, ~rand, xres, supi)]
-
-rule hxres:
-        Let 
-            hxres = h(~rand, xres)
-        in
-        [Identity($ausf, xres, supi) --> [Identity($ausf, hxres, supi)]
+		Let
+			xres_star = h(~snid, ~rand, $xres)
+		in
+        [Fr(~rand), Fr(~xres), Fr(~k_ausf) !Identity($arpf), !Identity($ue, ~suci, $supi, $hn), In(<'Ndm_UEAuthentication_GET_Request', $ausf, $arpf, ~suci, ~snid>), Fr(~rand)]
+    -->
+    	[Out(<'Ndm_UEAuthentication_GET_Response', $arpf, $ausf, ~rand, $supi, xres_star, ~k_ausf>)]
 
 rule nausf_response:
-        [Identity($ausf, hxres, supi)] --> [Out(<'Nausf_UEAthentication_Authenticate_Response', $ausf, seaf, hxres>)]
+		Let
+			hxres_star = h(~rand, xres_star),
+			k_seaf = h(~snid, ~k_ausf)
+		in
+		[!Identity($ausf), !Identity($seaf, ~snid), In('Ndm_UEAuthentication_GET_Response', $arpf, $ausf, ~rand, $supi, xres_star, ~k_ausf)]
+	-->
+		[StoredXRES($ausf, xres_star, hxres_star),Out('Nausf_UEAthentication_Authenticate_Response', $ausf, $seaf, ~rand, hxres, k_seaf)]
 
 rule auth_request:
-        [Identify($seaf, $snid), In(<'Nausf_UEAthentication_Authenticate_Response', $ausf, seaf, hxres, ~rand>)]
-           -->[Out(<'Authentication_Requst', $seaf, $ue, ~rand, ~av>)]
+		[!Identity($seaf, ~snid), !Identity($ue, ~suci, $supi, $hn), In(<'Nausf_UEAthentication_Authenticate_Response', $ausf, $seaf, ~rand, hxres, k_seaf>)]
+	-->
+		[Out(<'Authentication_Requst', $seaf, $ue, ~rand>)]
 
 rule auth:
-        [Identity($ue, $hn, ~K), In(<'Authentication_Requst', $seaf, $ue, ~rand, ~av>)] --> []
+		[Identity($ue, ~suci, $supi, $hn), !LongTermKey(~K), In(<'Authentication_Requst', $seaf, $ue, ~rand>)]
+	-->
+		[]
 
 rule auth_response:
 
@@ -56,5 +74,20 @@ rule nausf_request:
 rule res_verification:
 
 rule nausf_final_response:
+	[]--[AuthSuccess(seaf, ausf)]->[]
+
+lemma Valid_setup:
+	exists_trace
+	" Ex ue seaf ausf #i #j.
+		  SendN1(ue, seaf) @ #i
+		& AuthSuccess(seaf, ausf) @ #j
+		& #i < #j
+	"
+
+lemma Client_auth:
+	// want to ensure that client will only authenticate with someone who has access to its long-term key
+
+lemma Client_priv:
+	// want to ensure that keys are not leaked to any third party
 
 end
