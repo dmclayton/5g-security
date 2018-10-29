@@ -1,0 +1,44 @@
+%
+% File          : 5GAKA-proof.tex
+% Description   : 5G-AKA Proof Paper
+% Authors       : Clayton & Harmon
+%
+% Last Modified : Fri Dec  1 08:17:28 EST 2000
+%
+% BDOC PARAM offset=0in,0in
+
+% Page style
+\documentclass[11pt, pdftex]{article}
+\usepackage{epsf}
+\usepackage{epsfig}
+\usepackage{times}
+\usepackage{ifthen}
+\usepackage{comment}
+
+\usepackage[margin=1in]{geometry}
+
+
+\title{5G-AKA: A Formal Verification}
+\author{David Clayton and Ira Harmon}
+\date{November 29, 2018}
+
+
+\begin{document}
+\maketitle
+\textbf{Abstract:} 
+The 5th generation of cell phone technology is scheduled to be deployed by 2021.  It will connect more people around the world than any prior generation.  The 5G protocol suite includes modifications of existing protocols as well as new protocols.  However, the foundation of 5G security rest upon the 5G-AKA protocol.  Since inception, 5G-AKA has gone through multiple revisions due to discovered vulnerabilities.  In this paper the most recent version of the protocol is tested through symbolic analysis and recommendations are made that would improve its overall security.
+
+\newpage
+\section{Introduction}
+By 2019 over 5 Billion people are expected to own a mobile phone.  Currently over 62 percent of the world population uses mobile phones.  As cell phones become more pervasive their use touches every aspect of modern life: Facebook updates, news, and banking transactions are all increasingly done via cell.  At this critical time in the evolution of cellular technology, 3GPP, the body that standardizes cell phone protocols is preparing to deploy 5G.  And while 5G promises to connect more users with better service than previous generations, the unrestrained growth of the technology makes the security implications of 5G critical.  5G-AKA (Authentication and Key Agreement) is the first line of defense in securing mobile communications.  The protocol authenticates the user and distributes long term keys.  The most recent version of the protocol is outlined in 3GPP Publication TS 33.501 V15.2.0.  In this paper we validate the most recent version of the protocol through symbolic analysis.  
+
+
+\section{Related Work}
+The Tamarin-Prover is software for the symbolic analysis and verification of security protocols.
+
+      
+
+\nocite{*}
+\bibliography{References}
+\bibliographystyle{plain}
+\end{document}
