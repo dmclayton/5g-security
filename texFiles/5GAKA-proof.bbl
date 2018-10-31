@@ -1,5 +1,12 @@
 \begin{thebibliography}{1}
 
+\bibitem{threeGpp5Gspec}
+3rd generation partnership project; technical specification group services and
+  system aspects; security architecture and procedures for 5g system 3gpp ts
+  33.501.
+\newblock Technical report, 3rd Generation Partnership Project, 650 Route des
+  Lucioles – Sophia Antipolis Valbonne – France, 9 2018.
+
 \bibitem{basin2018formal}
 David Basin, Jannik Dreier, Lucca Hirschi, Sa{\v{s}}a Radomirovic, Ralf Sasse,
   and Vincent Stettler.
@@ -17,16 +24,35 @@ Cas Cremers, Marko Horvat, Jonathan Hoyland, Sam Scott, and Thyla van~der
 \bibitem{key}
 Martin Dehnel-Wild and Cas Cremers.
 \newblock Security vulnerability in 5g-aka draft (3gpp ts 33.501 draft v0.7.0).
-\newblock Available at {https://www.cs.ox.ac.uk/5G-analysis/}(2018/02/08).
+\newblock Available at \url{https://www.cs.ox.ac.uk/5G-analysis/}(2018/02/08).
 
 \bibitem{jover2018security}
 Roger~Piqueras Jover and Vuk Marojevic.
 \newblock Security and protocol exploit analysis of the 5g specifications.
 \newblock {\em arXiv preprint arXiv:1809.06925}, 2018.
 
+\bibitem{meier2013tamarin}
+Simon Meier, Benedikt Schmidt, Cas Cremers, and David Basin.
+\newblock The tamarin prover for the symbolic analysis of security protocols.
+\newblock In {\em International Conference on Computer Aided Verification},
+  pages 696--701. Springer, 2013.
+
 \bibitem{prasad20183gpp}
 Anand~R Prasad, Sivabalan Arumugam, B~Sheeba, and Alf Zugenmaier.
 \newblock 3gpp 5g security.
 \newblock {\em Journal of ICT Standardization}, 6(1):137--158, 2018.
+
+\bibitem{tamarinTeam}
+The~Tamarin Team.
+\newblock Tamarin prover manual.
+\newblock Available at
+  \url{https://https://tamarin-prover.github.io/manual/tex/tamarin-manual.pdf},
+  note = {Online; accessed 27 October 2018}.
+
+\bibitem{zhang2017overview}
+Xiaowei Zhang, Andreas Kunz, and Stefan Schr{\"o}der.
+\newblock Overview of 5g security in 3gpp.
+\newblock In {\em Standards for Communications and Networking (CSCN), 2017 IEEE
+  Conference on}, pages 181--186. IEEE, 2017.
 
 \end{thebibliography}
