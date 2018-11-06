@@ -57,9 +57,23 @@ Identifier).  The SUPI serves the same purpose as the IMSI in previous generatio
 \end{figure}
 
 Figure 2.1 gives a high level overview of the connections between the four components.
+\newline
 
-The protocol begins with an authorization request.  The request can be initiated by the UE or the SEAF.  
+The protocol begins with an authorization request.  The request can be initiated by the UE or the SEAF.  Authentication can use either 5G-AKA or EAP-AKA protocol.  The 5G-AKA protocol provides proof of authentication to the home network while EAP-AKA does not.  
 
+Assuming authentication is initiated by the UE, the UE sends a N1 message to the SEAF.  The message contains the UE's SUCI or 5G-GUTI.  The 5G-GUTI similar to the SUCI is a temporary identifier used by the UE for over air communications.  The SEAF sends a Nausf\textunderscore UEAuthentication\textunderscore Authenticate Request containing the UE SUCI or SUPI and the serving network name to the AUSF.  The AUSF temporarily stores the serving network name, and determines wether the network the request was received from has the right to use that name.  If the serving network name and the network the message was received from do not match, the authentication process is halted and a failure message is sent to the serving network.  If the SN name and the network the message is received from agree the AUSF passes the information from the SEAF on in an Nudm\textunderscore UEAuthentication\textunderscore Get Request to the ARPF.  The ARPF chooses whether EAP-AKA or 5G-AKA is used for authentication.  It also determines the SUPI of the UE if the SUCI was sent in the message.  
+
+Up to this point the process is the same for EAP-AKA and 5G-AKA.  Once the determination is made which protocol to use, the two protocols diverge.  In 5G-AKA ARPF generates an authentication vector, for each Nudm\textunderscore UEAuthentication\textunderscore Get Request received.  The authentication vector consists of $<$CK, IK, RAND, AUTN, XRES$>$.  CK stands for cipher key.  IK stands for integrity key.  CK and IK are 128-bits and derived from K, the UE's permanent key, using RAND.  RAND is a nonce.  
+
+\begin{quote}
+	$CK = f_1(K||RAND) $ where $ f_1 $ is a key generating function.
+	\newline
+	$IK = f_2(K||RAND) $ where $ f_2 $ is a key generating function.
+\end{quote}
+
+The AUTN is the AUthentication TokeN.  And XRES is the respected response from the UE.  
+
+  
 
 
 

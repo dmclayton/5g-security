@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{threeGpp5Gspec}
 3rd generation partnership project; technical specification group services and
@@ -6,6 +6,12 @@
   33.501.
 \newblock Technical report, 3rd Generation Partnership Project, 650 Route des
   Lucioles – Sophia Antipolis Valbonne – France, 9 2018.
+
+\bibitem{arkko2015usim}
+Jari Arkko, Karl Norrman, Mats N{\"a}slund, and Bengt Sahlin.
+\newblock A usim compatible 5g aka protocol with perfect forward secrecy.
+\newblock In {\em Trustcom/BigDataSE/ISPA, 2015 IEEE}, volume~1, pages
+  1205--1209. IEEE, 2015.
 
 \bibitem{basin2018formal}
 David Basin, Jannik Dreier, Lucca Hirschi, Sa{\v{s}}a Radomirovic, Ralf Sasse,

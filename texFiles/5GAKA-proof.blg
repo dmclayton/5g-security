@@ -12,45 +12,45 @@ Warning--string name "v15.2.0" is undefined
 --line 73 of file References.bib
 Warning--to sort, need author or key in threeGpp5Gspec
 Warning--empty author in threeGpp5Gspec
-You've used 9 entries,
+You've used 10 entries,
             2118 wiz_defined-function locations,
-            548 strings with 5909 characters,
-and the built_in function-call counts, 3513 in all, are:
-= -- 359
-> -- 159
-< -- 4
-+ -- 66
-- -- 54
-* -- 224
-:= -- 541
-add.period$ -- 30
-call.type$ -- 9
-change.case$ -- 55
+            554 strings with 6101 characters,
+and the built_in function-call counts, 4093 in all, are:
+= -- 421
+> -- 182
+< -- 6
++ -- 76
+- -- 62
+* -- 263
+:= -- 623
+add.period$ -- 34
+call.type$ -- 10
+change.case$ -- 62
 chr.to.int$ -- 0
-cite$ -- 11
-duplicate$ -- 139
-empty$ -- 275
-format.name$ -- 54
-if$ -- 773
+cite$ -- 12
+duplicate$ -- 164
+empty$ -- 319
+format.name$ -- 62
+if$ -- 906
 int.to.chr$ -- 0
-int.to.str$ -- 9
-missing$ -- 6
-newline$ -- 47
-num.names$ -- 16
-pop$ -- 71
+int.to.str$ -- 10
+missing$ -- 7
+newline$ -- 52
+num.names$ -- 18
+pop$ -- 80
 preamble$ -- 1
-purify$ -- 45
+purify$ -- 51
 quote$ -- 0
-skip$ -- 115
+skip$ -- 136
 stack$ -- 0
-substring$ -- 217
-swap$ -- 52
-text.length$ -- 4
+substring$ -- 263
+swap$ -- 66
+text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 36
+type$ -- 40
 warning$ -- 2
-while$ -- 30
-width$ -- 10
-write$ -- 99
+while$ -- 35
+width$ -- 12
+write$ -- 112
 (There was 1 error message)
