@@ -20,7 +20,7 @@
 
 \title{5G-AKA: A Formal Verification}
 \author{David Clayton and Ira Harmon}
-\date{November 29, 2018}
+\date{December 11, 2018}
 
 
 \begin{document}
@@ -63,15 +63,39 @@ The protocol begins with an authorization request.  The request can be initiated
 
 Assuming authentication is initiated by the UE, the UE sends a N1 message to the SEAF.  The message contains the UE's SUCI or 5G-GUTI.  The 5G-GUTI similar to the SUCI is a temporary identifier used by the UE for over air communications.  The SEAF sends a Nausf\textunderscore UEAuthentication\textunderscore Authenticate Request containing the UE SUCI or SUPI and the serving network name to the AUSF.  The AUSF temporarily stores the serving network name, and determines wether the network the request was received from has the right to use that name.  If the serving network name and the network the message was received from do not match, the authentication process is halted and a failure message is sent to the serving network.  If the SN name and the network the message is received from agree the AUSF passes the information from the SEAF on in an Nudm\textunderscore UEAuthentication\textunderscore Get Request to the ARPF.  The ARPF chooses whether EAP-AKA or 5G-AKA is used for authentication.  It also determines the SUPI of the UE if the SUCI was sent in the message.  
 
-Up to this point the process is the same for EAP-AKA and 5G-AKA.  Once the determination is made which protocol to use, the two protocols diverge.  In 5G-AKA ARPF generates an authentication vector, for each Nudm\textunderscore UEAuthentication\textunderscore Get Request received.  The authentication vector consists of $<$CK, IK, RAND, AUTN, XRES$>$.  CK stands for cipher key.  IK stands for integrity key.  CK and IK are 128-bits and derived from K, the UE's permanent key, using RAND.  RAND is a nonce.  
+Up to this point the process is the same for EAP-AKA and 5G-AKA.  Once the determination is made which protocol to use, the two protocols diverge.  In 5G-AKA ARPF generates an authentication vector, for each Nudm\textunderscore UEAuthentication\textunderscore Get Request received.  The authentication vector consists of $<$RAND, AUTN, XRES*, $K_{ausf}$$>$.  The AUTN is the AUthentication TokeN.  And XRES* is the expected response from the UE.  The AV is returned to the AUSF in a Nudm\textunderscore UEAuthentication\textunderscore Get Response.  If the SUCI was included in the request the SUPI is included in the response.  Upon receipt the AUSF stores XRES* and the SUCI or SUPI temporarily.  
 
+The AUSF generates HXRES* which is the SHA-256 hash of XRES*.  It generates $K_{seaf}$ from $K_{ausf}$.  XRES* is replaced by HXRES* and $K_{ausf}$ is replaced by $K_{seaf}$ inside the AV.  Before being sent in an Nausf\textunderscore UEAuthentication\textunderscore Authenticate Response to the SEAF, $K_{seaf}$ is removed from the AV.  Once received by the SEAF, the SEAF sends RAND, and AUTN to the UE in an Authentication Request message.  
+
+The UE determines the freshness of the AV based off the AUTN.  If the AV is fresh, then it is accepted by the UE.  Using USIM, the UE computes a response, RES, CK, IK.  CK stands for cipher key.  IK stands for integrity key.  CK and IK are 128-bits and derived from K, the UE's permanent key, using RAND.  
 \begin{quote}
 	$CK = f_1(K||RAND) $ where $ f_1 $ is a key generating function.
 	\newline
 	$IK = f_2(K||RAND) $ where $ f_2 $ is a key generating function.
-\end{quote}
+\end{quote} 
+From RES, CK, and IK the UE computes $K_{ausf}$, $K_{seaf}$, and RES*.  The UE sends a NAS Authentication Response message to the SEAF containing RES*.  The SEAF computes the hash of RES* and compares it to the cached value, HRES*.  If the two are the same authentication is considered successful for the serving network.  The SEAF sends RES* and the SUPI or SUCI of the UE to AUSF in a Nausf\textunderscore UEAuthentication\textunderscore Authenticate Request.  
 
-The AUTN is the AUthentication TokeN.  And XRES is the respected response from the UE.  
+Upon receiving the Nausf\textunderscore UEAuthentication\textunderscore Authenticate Request the AUSF checks the freshness of the AV.  If the AV is considered stale, then from the point of view of the home network, authentication is considered a failure.  If the AV is fresh, RES* is compared to the cached value, XRES*, if the two are in agreement, authentication is considered successful for the home network.  The AUSF then sends a Nausf\textunderscore UEAuthentication\textunderscore Authenticate Response message back to the SEAF indicating the result of home network authentication.  If authentication was successful for the home network, the $K_{seaf}$ is included in the Nausf\textunderscore UEAuthentication\textunderscore Authenticate Response message.  If a SUCI or SUPI was included in the initiating message a SUPI is also included in the response.  No communication services are provided to the UE until the SEAF is given the UE SUPI.
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.21]{Figure2_2.png}
+	\end{center}
+	\caption{5G-AKA protocol sequence diagram.}
+\end{figure}
+
+
+  
+
+
+
+
+
+
+
+
+
+  
 
   
 
