@@ -32,7 +32,12 @@ The 5th generation of cell phone technology is scheduled to be deployed by 2021.
 \section{Introduction}
 By 2019 over 5 Billion people are expected to own a mobile phone.  Currently over 62 percent of the world population uses mobile phones.  As cell phones become more pervasive their use touches every aspect of modern life: Facebook updates, news, and banking transactions are all increasingly done via cell.  At this critical time in the evolution of cellular technology, 3GPP, the body that standardizes cell phone protocols is preparing to deploy 5G.  And while 5G promises to connect more users with better service than previous generations, the unrestrained growth of the technology makes the security implications of 5G critical.  5G-AKA (Authentication and Key Agreement) is the first line of defense in securing mobile communications.  The protocol authenticates the user and distributes long term keys.  The most recent version of the protocol is outlined in 3GPP Publication TS 33.501 V15.2.0.  In this paper we validate the most recent version of the protocol through symbolic analysis.  
 
-\section{The 5G-AKA Protocol}
+\section{Related Work}
+The Tamarin-Prover is software for the symbolic analysis and verification of security protocols.
+
+
+\section{Background}
+\subsection{The 5G-AKA Protocol}
 
 5G-AKA is similar to authentication protocols used in previous generations.  5G allows for authentication via 5G-AKA or EAP-AKA.  For the purposes of this paper, the focus is 5G-AKA.  There are at least 4 actors in the 5G authentication process.  
 
@@ -85,8 +90,6 @@ Upon receiving the Nausf\textunderscore UEAuthentication\textunderscore Authenti
 \end{figure}
 
 
-\section{Related Work}
-The Tamarin-Prover is software for the symbolic analysis and verification of security protocols.
 
 
 
