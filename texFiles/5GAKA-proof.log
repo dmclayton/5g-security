@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  7 NOV 2018 12:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  8 NOV 2018 13:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -242,26 +242,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 59--61
  []
 
 [2 <./images/Figure2_1.png (PNG copy)>]
+<./images/Figure2_2.png, id=14, 2326.19063pt x 1045.65656pt>
+File: ./images/Figure2_2.png Graphic file (type png)
+<use ./images/Figure2_2.png>
+Package pdftex.def Info: ./images/Figure2_2.png  used on input line 82.
+(pdftex.def)             Requested size: 488.51445pt x 219.59436pt.
 
-LaTeX Warning: File `Figure2_2.png' not found on input line 82.
+Overfull \hbox (18.75943pt too wide) in paragraph at lines 82--83
+ [] 
+ []
 
-
-! Package pdftex.def Error: File `Figure2_2.png' not found: using draft setting
-.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.82 		\includegraphics[scale=0.21]{Figure2_2.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 82.
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -282,6 +272,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
+[4 <./images/Figure2_2.png (PNG copy)>]
 ! Undefined control sequence.
 l.55   \url
            {https://https://tamarin-prover.github.io/manual/tex/tamarin-manu...
@@ -297,28 +288,28 @@ Underfull \hbox (badness 10000) in paragraph at lines 52--57
 https://https://tamarin-
  []
 
-) [4] (./5GAKA-proof.aux) ) 
+) [5] (./5GAKA-proof.aux) ) 
 Here is how much of TeX's memory you used:
- 2203 strings out of 494923
- 31623 string characters out of 6180741
+ 2172 strings out of 494923
+ 31232 string characters out of 6180741
  93493 words of memory out of 5000000
- 5480 multiletter control sequences out of 15000+600000
- 18005 words of font info for 41 fonts, out of 8000000 for 9000
+ 5454 multiletter control sequences out of 15000+600000
+ 17490 words of font info for 39 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 41i,6n,32p,1117b,301s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,6n,32p,1117b,253s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/
 8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/ut
-mr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on 5GAKA-proof.pdf (4 pages, 128884 bytes).
+ist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr
+i8a.pfb>
+Output written on 5GAKA-proof.pdf (5 pages, 304868 bytes).
 PDF statistics:
  55 PDF objects out of 1000 (max. 8388607)
- 38 compressed objects within 1 object stream
+ 37 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

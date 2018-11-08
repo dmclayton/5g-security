@@ -75,7 +75,7 @@ The UE determines the freshness of the AV based off the AUTN.  If the AV is fres
 \end{quote} 
 From RES, CK, and IK the UE computes $K_{ausf}$, $K_{seaf}$, and RES*.  The UE sends a NAS Authentication Response message to the SEAF containing RES*.  The SEAF computes the hash of RES* and compares it to the cached value, HRES*.  If the two are the same authentication is considered successful for the serving network.  The SEAF sends RES* and the SUPI or SUCI of the UE to AUSF in a Nausf\textunderscore UEAuthentication\textunderscore Authenticate Request.  
 
-Upon receiving the Nausf\textunderscore UEAuthentication\textunderscore Authenticate Request the AUSF checks the freshness of the AV.  If the AV is considered stale, then from the point of view of the home network, authentication is considered a failure.  If the AV is fresh, RES* is compared to the cached value, XRES*, if the two are in agreement, authentication is considered successful for the home network.  The AUSF then sends a Nausf\textunderscore UEAuthentication\textunderscore Authenticate Response message back to the SEAF indicating the result of home network authentication.  If authentication was successful for the home network, the $K_{seaf}$ is included in the Nausf\textunderscore UEAuthentication\textunderscore Authenticate Response message.  If a SUCI or SUPI was included in the initiating message a SUPI is also included in the response.  No communication services are provided to the UE until the SEAF is given the UE SUPI.
+Upon receiving the Nausf\textunderscore UEAuthentication\textunderscore Authenticate Request the AUSF checks the freshness of the AV.  If the AV is considered stale, then from the point of view of the home network, authentication is considered a failure.  If the AV is fresh, RES* is compared to the cached value, XRES*, if the two are in agreement, authentication is considered successful for the home network.  The AUSF then sends a Nausf\textunderscore UEAuthentication\textunderscore Authenticate Response message back to the SEAF indicating the result of home network authentication.  If authentication was successful for the home network, the $K_{seaf}$ is included in the Nausf\textunderscore UEAuthentication\textunderscore Authenticate Response message.  If a SUCI or SUPI was included in the initiating message a SUPI is also included in the response.  No communication services are provided to the UE until the SEAF is given the UE SUPI.  Figure 2.2 summarizes the transactions in a protocol diagram.
 
 \begin{figure}[h]
 	\begin{center}
@@ -83,36 +83,6 @@ Upon receiving the Nausf\textunderscore UEAuthentication\textunderscore Authenti
 	\end{center}
 	\caption{5G-AKA protocol sequence diagram.}
 \end{figure}
-
-
-  
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 \section{Related Work}
