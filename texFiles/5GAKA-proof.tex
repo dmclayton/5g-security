@@ -8,7 +8,7 @@
 % BDOC PARAM offset=0in,0in
 
 % Page style
-\documentclass[11pt, pdftex]{article}
+\documentclass[10pt, pdftex]{article}
 \usepackage{epsf}
 \usepackage{epsfig}
 \usepackage{times}
@@ -56,7 +56,7 @@ Identifier).  The SUPI serves the same purpose as the IMSI in previous generatio
 \graphicspath{ {./images/} }
 \begin{figure}[h]
 	\begin{center}
-		\includegraphics[scale=0.21]{Figure2_1.png}
+		\includegraphics[scale=0.25]{Figure2_1.png}
 	\end{center}
 	\caption{Dashed lines indicate insecure connections.}
 \end{figure}
@@ -89,8 +89,12 @@ Upon receiving the Nausf\textunderscore UEAuthentication\textunderscore Authenti
 	\caption{5G-AKA protocol sequence diagram.}
 \end{figure}
 
+\subsection{Formal Verification}
+Formal verification uses mathematical concepts to ensure that a security protocol fulfills its intended design.  Today software based verification methods allow protocols to be systemically analyzed for flaws. There are two broad categories of verification, model checking and logical inference.  Model checking provides an exhaustive search of the model by exploration of each state and its transitions.  Logical inferences is a formal mathematical verification that is seldom automated and relies on the verifier's understanding of the system.  Currently model checking is the preferred method of verification.  It is increasingly replacing verification by  testing or simulation.  
 
+The Tamarin prover falls into the model checking class of verifier.  It is a symbolic modeling and analysis tool for security protocols.  The verifier uses a highly specific programming language to capture the states and transitions of the protocol in combination with the Dolev-Yao adverserial model.  Tamarin represents the protocol as a state machine, with the state of the system represented by a multi-set of facts.  Rules define state transitions.  Each rule is composed of facts.  Rules have a right side, an action and a left side.  The state is initialized to an empty multiset.  A rule can only be executed if the facts on the left-side of the rule are available in the multiset.  There are two types of facts, linear and persistent.  Linear facts are consumed when a rule is executed meaning they are no longer available for future rules.  Persistent facts can be used by several rules.  
 
+ 
 
 
      

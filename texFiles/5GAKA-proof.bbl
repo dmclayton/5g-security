@@ -37,6 +37,11 @@ Roger~Piqueras Jover and Vuk Marojevic.
 \newblock Security and protocol exploit analysis of the 5g specifications.
 \newblock {\em arXiv preprint arXiv:1809.06925}, 2018.
 
+\bibitem{edsarx.1101.181520110101}
+Suvansh Lal, Mohit Jain, and Vikrant Chaplot.
+\newblock Approaches to formal verification of security protocols.
+\newblock 2011.
+
 \bibitem{meier2013tamarin}
 Simon Meier, Benedikt Schmidt, Cas Cremers, and David Basin.
 \newblock The tamarin prover for the symbolic analysis of security protocols.

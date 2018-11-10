@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  8 NOV 2018 17:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  9 NOV 2018 20:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -8,8 +8,8 @@ LaTeX2e <2017-04-15>
 Babel <3.18> and hyphenation patterns for 3 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo
-File: size11.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@section=\count80
@@ -201,12 +201,12 @@ e
 * \topmargin=-37.0pt
 * \headheight=12.0pt
 * \headsep=25.0pt
-* \topskip=11.0pt
+* \topskip=10.0pt
 * \footskip=30.0pt
-* \marginparwidth=59.0pt
-* \marginparsep=10.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
 * \columnsep=10.0pt
-* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -222,7 +222,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 27.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 27.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 28.
 [1
 
@@ -232,12 +232,14 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 40.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 48.
+(Font)              <7> on input line 48.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 48.
 <./images/Figure2_1.png, id=8, 1307.63531pt x 429.10312pt>
 File: ./images/Figure2_1.png Graphic file (type png)
 <use ./images/Figure2_1.png>
 Package pdftex.def Info: ./images/Figure2_1.png  used on input line 59.
-(pdftex.def)             Requested size: 274.61153pt x 90.1143pt.
+(pdftex.def)             Requested size: 326.90804pt x 107.27551pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -247,8 +249,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 64--66
 
  []
 
-[2] [3 <./images/Figure2_1.png (PNG copy)>]
-<./images/Figure2_2.png, id=20, 2326.19063pt x 1045.65656pt>
+[2]
+Overfull \hbox (44.69965pt too wide) in paragraph at lines 71--72
+\OT1/ptm/m/n/10 col to use, the two pro-to-cols di-verge. In 5G-AKA ARPF gen-er
+-ates an au-then-ti-ca-tion vec-tor, for each Nudm[]UEAuthentication[]Get
+ []
+
+
+Overfull \hbox (49.39139pt too wide) in paragraph at lines 73--74
+\OT1/ptm/m/n/10 re-placed by HXRES* and $\OML/cmm/m/it/10 K[]$ \OT1/ptm/m/n/10 
+is re-placed by $\OML/cmm/m/it/10 K[]$ \OT1/ptm/m/n/10 in-side the AV. Be-fore 
+be-ing sent in an Nausf[]UEAuthentication[]Authenticate
+ []
+
+<./images/Figure2_2.png, id=14, 2326.19063pt x 1045.65656pt>
 File: ./images/Figure2_2.png Graphic file (type png)
 <use ./images/Figure2_2.png>
 Package pdftex.def Info: ./images/Figure2_2.png  used on input line 87.
@@ -258,7 +272,10 @@ Overfull \hbox (18.75943pt too wide) in paragraph at lines 87--88
  [] 
  []
 
-(./5GAKA-proof.bbl
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3 <./images/Figure2_1.png (PNG copy)>] (./5GAKA-proof.bbl
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no “ in font ptmr7t!
@@ -277,7 +294,7 @@ and I'll forget about whatever was undefined.
 
 [4 <./images/Figure2_2.png (PNG copy)>]
 ! Undefined control sequence.
-l.55   \url
+l.60   \url
            {https://https://tamarin-prover.github.io/manual/tex/tamarin-manu...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -286,30 +303,30 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 52--57
-[]\OT1/ptm/m/n/10.95 The Tamarin Team.  Tamarin prover man-ual.  Avail-able at 
-https://https://tamarin-
+Underfull \hbox (badness 10000) in paragraph at lines 57--62
+[]\OT1/ptm/m/n/10 The Tamarin Team.  Tamarin prover man-ual.  Avail-able at htt
+ps://https://tamarin-
  []
 
 ) [5] (./5GAKA-proof.aux) ) 
 Here is how much of TeX's memory you used:
- 2175 strings out of 494923
- 31267 string characters out of 6180741
- 93493 words of memory out of 5000000
- 5456 multiletter control sequences out of 15000+600000
- 19116 words of font info for 41 fonts, out of 8000000 for 9000
+ 2174 strings out of 494923
+ 31238 string characters out of 6180741
+ 94476 words of memory out of 5000000
+ 5455 multiletter control sequences out of 15000+600000
+ 18200 words of font info for 38 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  41i,6n,32p,1117b,253s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/
 8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr
 i8a.pfb>
-Output written on 5GAKA-proof.pdf (5 pages, 305668 bytes).
+Output written on 5GAKA-proof.pdf (5 pages, 307908 bytes).
 PDF statistics:
  55 PDF objects out of 1000 (max. 8388607)
  37 compressed objects within 1 object stream
