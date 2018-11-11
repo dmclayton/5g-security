@@ -92,7 +92,31 @@ Upon receiving the Nausf\textunderscore UEAuthentication\textunderscore Authenti
 \subsection{Formal Verification}
 Formal verification uses mathematical concepts to ensure that a security protocol fulfills its intended design.  Today software based verification methods allow protocols to be systemically analyzed for flaws. There are two broad categories of verification, model checking and logical inference.  Model checking provides an exhaustive search of the model by exploration of each state and its transitions.  Logical inferences is a formal mathematical verification that is seldom automated and relies on the verifier's understanding of the system.  Currently model checking is the preferred method of verification.  It is increasingly replacing verification by  testing or simulation.  
 
-The Tamarin prover falls into the model checking class of verifier.  It is a symbolic modeling and analysis tool for security protocols.  The verifier uses a highly specific programming language to capture the states and transitions of the protocol in combination with the Dolev-Yao adverserial model.  Tamarin represents the protocol as a state machine, with the state of the system represented by a multi-set of facts.  Rules define state transitions.  Each rule is composed of facts.  Rules have a right side, an action and a left side.  The state is initialized to an empty multiset.  A rule can only be executed if the facts on the left-side of the rule are available in the multiset.  There are two types of facts, linear and persistent.  Linear facts are consumed when a rule is executed meaning they are no longer available for future rules.  Persistent facts can be used by several rules.  
+The Tamarin prover falls into the model checking class of verifier.  It is a symbolic modeling and analysis tool for security protocols.  The verifier uses a highly specific programming language to capture the states and transitions of the protocol in combination with the Dolev-Yao adverserial model.  Tamarin represents the protocol as a state machine, with the state of the system represented by a multi-set of facts.  Rules define state transitions.  Each rule is composed of facts.  Rules have a right side, an action and a left side.  The state is initialized to an empty multiset.  A rule can only be executed if the facts on the left-side of the rule are available in the multiset.  There are two types of facts, linear and persistent.  Linear facts are consumed when a rule is executed meaning they are no longer available for future rules.  Persistent facts can be used by several rules.  In the Tamarin language, the qualities of the protocol the tester intends to prove and written as lemmas.  An example of a rule and a lemma are shown below.
+
+\begin{quote}
+	\begin{verbatim}
+	rule Reveal_ltk:
+	[ !Ltk(A, ltk) ]
+	--[ LtkReveal(A) ]->
+	[ Out(ltk) ]
+	
+	lemma Client_session_key_secrecy:
+	" /* It cannot be that a  */
+	not(
+	Ex S k #i #j.
+	/* client has set up a session key 'k' with a server'S' */
+	SessKeyC(S, k) @ #i
+	/* and the adversary knows 'k' */
+	& K(k) @ #j
+	/* without having performed a long-term key reveal on 'S'. */
+	& not(Ex #r. LtkReveal(S) @ r)
+	)
+	"
+	\end{verbatim}
+\end{quote} Each rule is named.  In this case the name is "Reveal\textunderscore ltk"  The explanation mark indicates that the fact is persistent.  
+
+  
 
  
 
