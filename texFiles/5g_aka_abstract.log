@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  13 NOV 2018 11:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  13 NOV 2018 11:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**5GAKA-proof.tex
-(./5GAKA-proof.tex
+**5g_aka_abstract.tex
+(./5g_aka_abstract.tex
 LaTeX2e <2017-04-15>
 Babel <3.18> and hyphenation patterns for 3 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -99,8 +99,8 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layoutvoffset=\dimen122
 \Gm@dimlist=\toks15
 )
-(./5GAKA-proof.aux)
-\openout1 = `5GAKA-proof.aux'.
+(./5g_aka_abstract.aux)
+\openout1 = `5g_aka_abstract.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
 LaTeX Font Info:    ... okay on input line 26.
@@ -115,7 +115,8 @@ LaTeX Font Info:    ... okay on input line 26.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
 LaTeX Font Info:    ... okay on input line 26.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 26.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -226,115 +227,23 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 28.
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 32.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 40.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 48.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 48.
-<./images/Figure2_1.png, id=8, 1307.63531pt x 429.10312pt>
-File: ./images/Figure2_1.png Graphic file (type png)
-<use ./images/Figure2_1.png>
-Package pdftex.def Info: ./images/Figure2_1.png  used on input line 59.
-(pdftex.def)             Requested size: 326.90804pt x 107.27551pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 64--66
-
- []
-
-[2]
-Overfull \hbox (44.69965pt too wide) in paragraph at lines 71--72
-\OT1/ptm/m/n/10 col to use, the two pro-to-cols di-verge. In 5G-AKA ARPF gen-er
--ates an au-then-ti-ca-tion vec-tor, for each Nudm[]UEAuthentication[]Get
- []
-
-
-Overfull \hbox (49.39139pt too wide) in paragraph at lines 73--74
-\OT1/ptm/m/n/10 re-placed by HXRES* and $\OML/cmm/m/it/10 K[]$ \OT1/ptm/m/n/10 
-is re-placed by $\OML/cmm/m/it/10 K[]$ \OT1/ptm/m/n/10 in-side the AV. Be-fore 
-be-ing sent in an Nausf[]UEAuthentication[]Authenticate
- []
-
-<./images/Figure2_2.png, id=14, 2326.19063pt x 1045.65656pt>
-File: ./images/Figure2_2.png Graphic file (type png)
-<use ./images/Figure2_2.png>
-Package pdftex.def Info: ./images/Figure2_2.png  used on input line 87.
-(pdftex.def)             Requested size: 488.51445pt x 219.59436pt.
-
-Overfull \hbox (18.75943pt too wide) in paragraph at lines 87--88
- [] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[3 <./images/Figure2_1.png (PNG copy)>]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 98.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) (./5GAKA-proof.bbl
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no “ in font ptmr7t!
-Missing character: There is no â in font ptmr7t!
-Missing character: There is no € in font ptmr7t!
-Missing character: There is no “ in font ptmr7t!
-
-[4 <./images/Figure2_2.png (PNG copy)>]
-! Undefined control sequence.
-l.33 \newblock Available at \url
-                                {https://www.cs.ox.ac.uk/5G-analysis/}(2018/...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.60   \url
-           {https://https://tamarin-prover.github.io/manual/tex/tamarin-manu...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 57--62
-[]\OT1/ptm/m/n/10 The Tamarin Team.  Tamarin prover man-ual.  Avail-able at htt
-ps://https://tamarin-
- []
-
-) [5] (./5GAKA-proof.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./5g_aka_abstract.aux) ) 
 Here is how much of TeX's memory you used:
- 2209 strings out of 494923
- 31737 string characters out of 6180741
- 94476 words of memory out of 5000000
- 5485 multiletter control sequences out of 15000+600000
- 18715 words of font info for 40 fonts, out of 8000000 for 9000
+ 2131 strings out of 494923
+ 30602 string characters out of 6180741
+ 88441 words of memory out of 5000000
+ 5423 multiletter control sequences out of 15000+600000
+ 12757 words of font info for 31 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 41i,6n,32p,1117b,253s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/
-8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/ut
-mr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on 5GAKA-proof.pdf (5 pages, 323177 bytes).
+ 41i,6n,32p,595b,189s stack positions out of 5000i,500n,10000p,200000b,80000s
+{
+/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/t
+exmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/urw/times/utmr8a.pfb>
+Output written on 5g_aka_abstract.pdf (1 page, 22152 bytes).
 PDF statistics:
- 59 PDF objects out of 1000 (max. 8388607)
- 40 compressed objects within 1 object stream
+ 17 PDF objects out of 1000 (max. 8388607)
+ 11 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
