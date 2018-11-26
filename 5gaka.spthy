@@ -5,8 +5,8 @@ builtins: hashing
 
 rule create_ue:
 		[Fr(~suci),Fr(~K)]
-	-->
-		[!UE_Identity($ue, ~suci, $supi, $hn), !LongTermKey(~K), Out(~suci), Out($hn)]
+	--[AssignUserID($ue, ~K)]->
+		[!UE_Identity($ue, ~suci, $supi, $hn), !LongTermKey($ue, ~K), Out(~suci), Out($hn)]
 
 rule create_seaf:
 		[Fr(~snid)]
@@ -22,6 +22,11 @@ rule create_arpf:
 		[]
 	-->
 		[!ARPF_Identity($arpf)]
+
+rule key_reveal:
+		[!LongTermKey($ue, ~K), !ARPF_Identity($arpf)]
+	--[KeyReveal($arpf, $ue, ~K)]->
+		[!ARPF_Store_Key($arpf, $ue, ~K)]
 
 rule N1_message:
         [!UE_Identity($ue, ~suci, $supi, $hn), !SEAF_Identity($seaf, ~snid)]
@@ -43,7 +48,7 @@ rule receive_Ndm_UEAuthentication_GET_Request:
 			xres_star = h(~snid, ~rand, ~xres)
 			k_ausf = h(~K)
 		in
-        [Fr(~rand), Fr(~xres), !ARPF_Identity($arpf), !LongTermKey(~K), !UE_Identity($ue, ~suci, $supi, $hn), In(<'Ndm_UEAuthentication_GET_Request', $ausf, $arpf, ~suci, ~snid>), Fr(~rand)]
+        [Fr(~rand), Fr(~xres), !ARPF_Identity($arpf), !ARPF_Store_Key($arpf, $ue, ~K), !UE_Identity($ue, ~suci, $supi, $hn), In(<'Ndm_UEAuthentication_GET_Request', $ausf, $arpf, ~suci, ~snid>), Fr(~rand)]
     -->
     	[Out(<'Ndm_UEAuthentication_GET_Response', $arpf, $ausf, ~rand, $supi, xres_star, k_ausf>)]
 
@@ -67,7 +72,7 @@ rule auth_response:
 			k_seaf = h(~snid, ~k_ausf)
 			res_star = h(~snid, ~rand, ~xres)
 		in
-		[Fr(~xres), !UE_Identity($ue, ~suci, $supi, $hn), !LongTermKey(~K), !SEAF_Identity($seaf, ~snid), In(<'Authentication_Request', $seaf, ~snid, $ue, ~rand>)]
+		[Fr(~xres), !UE_Identity($ue, ~suci, $supi, $hn), !ARPF_Store_Key($arpf, $ue, ~K), !SEAF_Identity($seaf, ~snid), In(<'Authentication_Request', $seaf, ~snid, $ue, ~rand>)]
 	-->
 		[Out(<'Authentication_Response', $seaf, ~snid, $ue, $supi, res_star, ~rand>)]
 
@@ -92,10 +97,12 @@ lemma Valid_setup:
 		& #i < #j
 	"
 
-//lemma Client_auth:
-	// want to ensure that client will only authenticate with someone who has access to its long-term key
-
-//lemma Client_priv:
-	// want to ensure that keys are not leaked to any third party
+lemma Client_auth:
+	" All ue seaf ausf #i #j.
+		(SendN1(ue, seaf) @ #i
+		& AuthSuccess(seaf, ausf) @ #j)
+		==>
+		(Ex arpf k #r. KeyReveal(arpf, ue, k) @ #r)
+	"
 
 end
