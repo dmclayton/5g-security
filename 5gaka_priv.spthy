@@ -39,7 +39,7 @@ rule receive_N1_message:
        	[Nausf_UEAuthentication_Authenticate_Request($seaf, $ausf, ~suci, $hn, ~snid)]
 
 rule receive_Nausf_UEAuthentication_Authenticate:
-        [!SEAF_Identity($seaf, ~snid), !AUSF_Identity($ausf), Nausf_UEAuthentication_Authenticate_Request($seaf, $ausf, ~suci, $hn, ~snid)]
+        [!SEAF_Identity($seaf, ~snid), !AUSF_Identity($ausf), !ARPF_Identity($arpf), Nausf_UEAuthentication_Authenticate_Request($seaf, $ausf, ~suci, $hn, ~snid)]
     -->
     	[Ndm_UEAuthentication_GET_Request($ausf, $arpf, ~suci, ~snid)]
 
@@ -48,18 +48,18 @@ rule receive_Ndm_UEAuthentication_GET_Request:
 			xres_star = h(~snid, ~rand, ~xres)
 			k_ausf = h(~K)
 		in
-        [Fr(~rand), Fr(~xres), !ARPF_Identity($arpf), !ARPF_Store_Key($arpf, $ue, ~K), !UE_Identity($ue, ~suci, $supi, $hn), Ndm_UEAuthentication_GET_Request($ausf, $arpf, ~suci, ~snid), Fr(~rand)]
+        [Fr(~rand), Fr(~xres), !ARPF_Identity($arpf), !ARPF_Store_Key($arpf, $ue, ~K), !UE_Identity($ue, ~suci, $supi, $hn), Ndm_UEAuthentication_GET_Request($ausf, $arpf, ~suci, ~snid)]
     -->
-    	[Ndm_UEAuthentication_GET_Response($arpf, $ausf, ~rand, $supi, xres_star, k_ausf)]
+    	[Ndm_UEAuthentication_GET_Response($arpf, $ausf, ~rand, ~xres, $supi, xres_star, k_ausf)]
 
 rule nausf_response:
 		let
 			hxres_star = h(~rand, xres_star)
 			k_seaf = h(~snid, k_ausf)
 		in
-		[!AUSF_Identity($ausf), !SEAF_Identity($seaf, ~snid), Ndm_UEAuthentication_GET_Response($arpf, $ausf, ~rand, $supi, xres_star, k_ausf)]
-	-->
-		[StoredXRES($ausf, xres_star, hxres_star), Nausf_UEAthentication_Authenticate_Response($ausf, $seaf, ~rand, hxres_star, k_seaf)]
+		[!AUSF_Identity($ausf), !SEAF_Identity($seaf, ~snid), Ndm_UEAuthentication_GET_Response($arpf, $ausf, ~rand, ~xres, $supi, xres_star, k_ausf)]
+	--[StoreXRES($ausf)]->
+		[StoredXRES($ausf, ~xres, xres_star, hxres_star), Nausf_UEAthentication_Authenticate_Response($ausf, $seaf, ~rand, hxres_star, k_seaf)]
 
 rule auth_request:
 		[!SEAF_Identity($seaf, ~snid), !UE_Identity($ue, ~suci, $supi, $hn), Nausf_UEAthentication_Authenticate_Response($ausf, $seaf, ~rand, hxres_star, k_seaf)]
@@ -70,24 +70,37 @@ rule auth_response:
 		let
 			k_ausf = h(~K)
 			k_seaf = h(~snid, ~k_ausf)
-			res_star = h(~snid, ~rand, ~xres)
+			res_star = h(~snid, ~rand, ~res)
 		in
-		[Fr(~xres), !UE_Identity($ue, ~suci, $supi, $hn), !ARPF_Store_Key($arpf, $ue, ~K), !SEAF_Identity($seaf, ~snid), In(<'Authentication_Request', $seaf, ~snid, $ue, ~rand>)]
-	-->
-		[Out(<'Authentication_Response', $seaf, ~snid, $ue, $supi, res_star, ~rand>)]
+		[Fr(~res), !UE_Identity($ue, ~suci, $supi, $hn), !ARPF_Store_Key($arpf, $ue, ~K), !SEAF_Identity($seaf, ~snid), In(<'Authentication_Request', $seaf, ~snid, $ue, ~rand>)]
+	--[AuthResponse($ue, $seaf, $arpf)]->
+		[Out(<'Authentication_Response', $seaf, ~snid, ~res, $ue, $supi, res_star, ~rand>)]
 
 rule nausf_request:
 		let
+			xres_star = h(~snid, ~rand, ~xres)
+			res_star = h(~snid, ~rand, ~res)
 			hres_star = h(~rand, res_star)
 		in
-		[!SEAF_Identity($seaf, ~snid), !AUSF_Identity($ausf), StoredXRES($ausf, $xres_star, hres_star), In(<'Authentication_Response', $seaf, ~snid, $ue, $supi, res_star, ~rand>)]
-	-->
+		[!SEAF_Identity($seaf, ~snid), !AUSF_Identity($ausf), StoredXRES($ausf, ~xres, xres_star, hres_star), In(<'Authentication_Response', $seaf, ~snid, ~res, $ue, $supi, res_star, ~rand>)]
+	--[NausfRequest($ue, $seaf, $ausf)]->
 		[StoredRES($ausf, hres_star), Nausf_UEAuthentication_Authenticate_Request(res_star, $supi, $seaf, ~snid, $arpf)]
 
 rule nausf_final_response:
 		[!SEAF_Identity($seaf, ~snid), !AUSF_Identity($ausf), StoredRES($ausf, res_star), Nausf_UEAuthentication_Authenticate_Request(res_star, $supi, $seaf, ~snid, $arpf)]
 	--[AuthSuccess($seaf, $ausf)]->
 		[Nausf_UEAuthentication_Authenticate_Response($supi, $seaf, ~snid, $ausf)]
+
+lemma Valid_setup:
+	exists-trace
+	" Ex ue seaf ausf #i #j.
+		  SendN1(ue, seaf) @ #i
+//		& StoreXRES(ausf) @ #j
+//		& AuthResponse(ue, seaf, arpf) @ #k
+		& NausfRequest(ue, seaf, ausf) @ #j
+//		& AuthSuccess(seaf, ausf) @ #j
+		& #i < #j
+	"
 
 lemma Client_auth_priv:
 	" All ue seaf ausf #i #j.
