@@ -39,7 +39,7 @@ rule receive_N1_message:
        	[Out(<'Nausf_UEAuthentication_Authenticate_Request', $seaf, $ausf, ~suci, $hn, ~snid>)]
 
 rule receive_Nausf_UEAuthentication_Authenticate:
-        [!SEAF_Identity($seaf, ~snid), !AUSF_Identity($ausf), In(<'Nausf_UEAuthentication_Authenticate_Request', $seaf, $ausf, ~suci, $hn, ~snid>)]
+        [!SEAF_Identity($seaf, ~snid), !AUSF_Identity($ausf), !ARPF_Identity($arpf), In(<'Nausf_UEAuthentication_Authenticate_Request', $seaf, $ausf, ~suci, $hn, ~snid>)]
     -->
     	[Out(<'Ndm_UEAuthentication_GET_Request', $ausf, $arpf, ~suci, ~snid>)]
 
@@ -48,7 +48,7 @@ rule receive_Ndm_UEAuthentication_GET_Request:
 			xres_star = h(~snid, ~rand, ~xres)
 			k_ausf = h(~K)
 		in
-        [Fr(~rand), Fr(~xres), !ARPF_Identity($arpf), !ARPF_Store_Key($arpf, $ue, ~K), !UE_Identity($ue, ~suci, $supi, $hn), In(<'Ndm_UEAuthentication_GET_Request', $ausf, $arpf, ~suci, ~snid>), Fr(~rand)]
+        [Fr(~rand), Fr(~xres), !ARPF_Identity($arpf), !ARPF_Store_Key($arpf, $ue, ~K), !UE_Identity($ue, ~suci, $supi, $hn), In(<'Ndm_UEAuthentication_GET_Request', $ausf, $arpf, ~suci, ~snid>)]
     -->
     	[Out(<'Ndm_UEAuthentication_GET_Response', $arpf, $ausf, ~rand, $supi, xres_star, k_ausf>)]
 
