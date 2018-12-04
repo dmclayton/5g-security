@@ -1,0 +1,37 @@
+\documentclass[10pt, pdftex]{article}
+\usepackage{epsfig}
+\usepackage{times}
+\usepackage{ifthen}
+
+\usepackage[margin=1in]{geometry}
+
+
+\begin{document}
+\section{Methodology}
+
+\subsection{The Model}
+
+As is standard in Tamarin proofs, we use the Dolev-Yao model to investigate the protocol. This approach represents a network as abstract machines which exchange messages consisting of formal terms. Because of this abstraction, it is the most straightforward way to formally examine the security properties of a network protocol.
+
+One of the primary aspects aspect which makes the Dolev-Yao model useful for finding potential security vulnerabilities is its extremely weak assumptions about what a limits an adversary has. Any message is assumed to be completely under the control of the adversary: they can overhear, intercept, and synthesize any combination of messages subject only to their current knowledge of the network state. By giving the adversary as much power and flexibility as possible, we ensure that the model can account for as many attacks as possible, whether passive eavesdropping attacks or more active attacks involving the interception and manipulation of wireless communication.
+
+Because of the strength of the Dolev-Yao adversary, we must be careful not to give them more strengh than the 5G-AKA protocol accounts for. The purpose of 5G-AKA is to verify the interaction of the UE with the network, with all of the internal network components (SEAF, AUSF, UDM/ARPF) assumed to have secure communications with each other. This assumption includes not just integrity and authenticity but also confidentiality, since an adversary is assumed to be unable to eavesdrop on the wired communications between SN and HN. To account for this, we replace all internal messages with facts stating that a message has been sent. The adversary has no control over the facts of the experiment, and therefore can only manipulate messages between the UE and the SEAF, which is the only part of the network communicated with directly by the user. Since none of these `message facts' invoke \verb|Out|, they are also confidential. Finally, the linear logic employed by Tamarin ensures that these facts will each be used at most once, ensuring that internal messages will not be erroneously duplicated. However, to fit with the (lack of) specifications, we do not add any requirement of the ordering in which the message facts are handled by the network.
+
+Because of the complexity of the protocol, we make certain simplifying assumptions. For example, to produce terms like HRES* our model does not implement the SHA256 algorithm specified by the protocol but instead uses Tamarin's built-in hashing theory, which is assumed to be perfectly confidential in that an adversary can deduce nothing about \verb|x| given knowledge of \verb|h(x)|. Given the robustness of SHA256, we consider this a reasonable approximation of the network's actual behavior.
+
+\subsection{Security Properties}
+
+There are several properties 5GAKA is intended to guarantee, encompassing both the validity of the authentication and the confidentiality of all components of the protocol which are expected to be secret, such as the user's key and SUPI. Each of the properties will correspond to a Tamarin lemma asserting that the property holds in all possible situations that might arise from the rules and for all choices the Dolev-Yao adversary may make.
+
+Valid authentication has two components. First, we want to ensure that an adversary cannot impersonate a valid SN to a UE, authenticating with the UE without having access to an ARPF with the user's private key. Conversely, we want to ensure an adversary cannot impersonate a valid UE to the SN, again without knowing the correct private key. Each of these corresponds to a lemma of the form `if authentication is successful, then the agent in question has access to the secret key'.
+
+To guarantee confidentiality we want to ensure that no information intended to be kept secret is leaked to an adversary, possibly including a malicious SN. One aspect of this is keeping the user's SUPI confidential. Knowledge of a user's SUPI would permit an adversary the undesirable capability of tracking a subscriber's physical location, so we want to ensure that the SUPI remains unknown to all parties involved except the user itself and the HN. For this we need two experiments. The first, modeling an outside adversary, uses the normal setup and states that the adversary never learns a user's SUPI. To model an honest but curious SN, we change the rules to produce an \verb|Out| fact whenever information is passed through the SEAF, thereby giving the adversary the same knowledge that is available to the SN.
+
+The other aspect of confidentiality is that keys involved in the protocol (the user's long-term key \verb|K| as well as the $K_{seaf}$ and $K_{ausf}$) should remain unknown to all parties which do not need access to them. The SN needs to know the $K_{seaf}$ in order to function correctly, for example, but should not be able to deduce the user's long-term key at any point. External adversaries should not be able to deduce any keys.
+
+Key confidentiality can be further divided into two phases. First, we want to ensure that an adversary cannot deduce secret protocol terms like $K_{seaf}$ given the ability to view normal network traffic. A second, stronger criterion is to allow the adversary to make long-term key reveals and use the information gained in order to predict new keys. We therefore again split the proof into two cases for each type of key, with one lemma to test whether an adversary can deduce the key `from scratch' and another where the adversary is allowed use of an \verb|LtkReveal| fact allowing it access to previously used keys.
+
+%\nocite{*}
+%\bibliography{References}
+%\bibliographystyle{plain}
+\end{document}
