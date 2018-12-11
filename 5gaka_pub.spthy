@@ -1,4 +1,4 @@
-theory 5gaka
+theory 5gaka_pub
 begin
 
 builtins: hashing, xor
@@ -59,7 +59,7 @@ rule N1_message:
 rule receive_N1_message:
         [!SEAF_Identity($seaf, ~snid), !AUSF_Identity($ausf), In(<'N1_message', $ue, $seaf, suci, $hn>)]
     -->
-       	[Nausf_UEAuthentication_Authenticate_Request($seaf, $ausf, suci, $hn, ~snid)]
+       	[Nausf_UEAuthentication_Authenticate_Request($seaf, $ausf, suci, $hn, ~snid), Out(<'SN_knowledge', $ausf, ~snid>)]
 
 rule Nausf_UEAuthentication_Authenticate_Req:
         [!SEAF_Identity($seaf, ~snid), !AUSF_Identity($ausf), !ARPF_Identity($arpf), Nausf_UEAuthentication_Authenticate_Request($seaf, $ausf, suci, $hn, ~snid)]
@@ -87,7 +87,22 @@ rule Nausf_UEAuthentication_Authenticate_Resp:
 rule Authenticate_Req:
 		[!SEAF_Identity($seaf, ~snid), !UE_Identity($ue, suci, ~supi, ~sqnUE, $hn), Nausf_UEAthentication_Authenticate_Response($ausf, $seaf, ~rand, hxres_star, k_seaf, ~sqnHN)]
 	--[SetupKseaf($ue, $seaf, k_seaf)]->
-		[Out(<'Authentication_Request', $seaf, ~snid, $ue, ~rand, ~sqnHN>)]
+		[Out(<'Authentication_Request', $seaf, ~snid, $ue, ~rand, ~sqnHN>), Out(<'SN_knowledge', $ausf, hxres_star, k_seaf, ~sqnHN>)]
+
+rule Resync_request:
+		[!UE_Identity($ue, suci, ~supi, ~sqnUE, $hn), !ARPF_Store_Info($arpf, $ue, ~supi, ~K), !SEAF_Identity($seaf, ~snid), In(<'Authentication_Request', $seaf, ~snid, $ue, ~rand>)]
+	-->
+		[Out(<'Sync_failure', $ue, ~sqnUE XOR h(~K, ~rand), h(~K, ~sqnUE, ~rand)>)]
+
+rule Resync_forward_hn:
+		[!SEAF_Identity($seaf, ~snid), !AUSF_Identity($ausf), In(<'Sync_failure', $ue, ~sqnUE XOR h(~K, ~rand), h(~K, ~sqnUE, ~rand)>)]
+	-->
+		[ResyncRequest($ue, $ausf, ~sqnUE XOR h(~K, ~rand), h(~K, ~sqnUE, ~rand))]
+
+rule Resync_process:
+		[!AUSF_Identity($ausf), !ARPF_Identity($arpf), !StoreRand($arpf, ~supi, ~rand), !ARPF_Store_Info($arpf, $ue, ~supi, ~K), ResyncRequest($ue, $ausf, resync_val, h(~K, ~sqnUE, ~rand))]
+	-->
+		[!AUSF_Store_Info($ausf, $ue, resync_val XOR h(~K, ~rand))]
 
 rule Authenticate_Resp:
 		let
@@ -108,16 +123,7 @@ rule Nausf_final:
 rule Nausf_final_internal:
 		[!SEAF_Identity($seaf, ~snid), !AUSF_Identity($ausf), StoredRES($ausf, hres_star), Nausf_UEAuthentication_Authenticate_Request(res_star, suci, $seaf, ~snid, $arpf)]
 	--[ReportAuthSuccess($seaf, $ausf, suci)]->
-		[Nausf_UEAuthentication_Authenticate_Response(suci, $seaf, ~snid, $ausf)]
-
-lemma Valid_setup:
-	exists-trace
-	" Ex ue key suci supi seaf ausf #i #j #k.
-		AssignUserID(ue, key, suci, supi) @ #i
-		& SendN1(ue, seaf) @ #j
-		& AuthSuccess(ue, seaf, ausf) @ #k
-		& #i < #k
-	"
+		[Nausf_UEAuthentication_Authenticate_Response(suci, $seaf, ~snid, $ausf), Out(<'SN_knowledge', suci, ~snid, $ausf>)]
 
 lemma SUPI_private:
 	" All ue key suci supi #i.
@@ -132,25 +138,6 @@ lemma User_key_private:
 		& K(k) @ #j
 		==>
 		(Ex #k. LtkReveal(ue, k) @ #k))
-	"
-
-lemma K_SEAF_private:
-	" All ue seaf k #i #j.
-		(SetupKseaf(ue, seaf, k) @ #i
-		& K(k) @ #j
-		==>
-		(Ex user #k. Ltk_seafReveal(user, k) @ #k)
-		| (Ex ausf k2 #k. Ltk_ausfReveal(ausf, k2) @ #k)
-		| (Ex user k2 #k. LtkReveal(user, k2) @ #k))
-	"
-
-lemma K_AUSF_private:
-	" All suci ausf key #i #j.
-		(SetupKausf(ausf, suci, key) @ #i
-		& K(key) @ #j
-		==>
-		(Ex ausf2 k2 #k. Ltk_ausfReveal(ausf2, k2) @ #k)
-		| (Ex user k2 #k. LtkReveal(user, k2) @ #k))
 	"
 
 end
